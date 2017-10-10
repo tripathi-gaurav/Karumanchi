@@ -96,5 +96,92 @@ public class SinglyLinkedList {
 		//Time Complexity: O(n) for insertion at worst
 		//Space Complexity: O(1) for the temp variable
 	}
+	
+	ListNode deleteFirstNodeInSLL(ListNode headNode) {
+		/*ListNode tempNode = headNode.getNext();
+		headNode = null;
+		return tempNode;*/
+		//since we are returning and effectively updating the headNode
+		//therefore, if we just return headNode.getNext(), it should work just fine.
+		return headNode.getNext();
+	}
+	
+	ListNode deleteLastNodeInSLL(ListNode headNode) {
+		ListNode currentNode = headNode;
+		//traverse to the second last node and setNext to NULL
+		while(currentNode.getNext().getNext() != null) {
+			currentNode = currentNode.getNext();
+		}
+		currentNode.setNext(null);
+		return headNode;
+	}
+	
+	ListNode deleteLastNodeInSLL2(ListNode headNode) {
+		//this is the implementation that the book explains
+		ListNode currentNode = headNode;
+		ListNode previousNode = currentNode;
+		//traverse to the second last node and setNext to NULL
+		while(currentNode.getNext() != null) {
+			previousNode = currentNode;
+			currentNode = currentNode.getNext();
+		}
+		currentNode = null; //not really required here, gc can handle this
+		previousNode.setNext(null);
+		return headNode;
+	}
+	
+	ListNode DeleteFromLinkedList(ListNode headNode, Integer position) {
+		//multiple returns in this method. don't think multiple returns are good for implementation/maintainability
+		int size = ListLength(headNode);
+		if(position > size + 1 || position < 1) {
+			System.out.println("Invalid position specified. Valid positions are between 1 and " + size+1);
+			return headNode;
+		}
+		
+		if(position == 1) {
+			//return deleteFirstNodeInSLL(headNode);
+			ListNode currentNode = headNode.getNext();
+			headNode = null; //not required here, let gc take care
+			return currentNode; //ideally, simply do return headNode.getNext();
+		}else {
+			ListNode currentNode = headNode.getNext();
+			for(int i=1;i<position-1;i++) { //book uses while(count < position)
+				currentNode = currentNode.getNext();
+			}
+			//changed the names and method to do the same thing as in book and make it easier to understand.
+			ListNode nodeToDelete = currentNode.getNext();
+			currentNode.setNext(nodeToDelete.getNext());
+			nodeToDelete = null; //mark for gc
+		}
+		
+		return headNode;
+	}
+	ListNode DeleteFromLinkedListSingleReturn(ListNode headNode, Integer position) {
+		//multiple returns in this method. don't think multiple returns are good for implementation/maintainability
+		int size = ListLength(headNode);
+		Boolean alert = false;
+		if(position > size + 1 || position < 1) {
+			System.out.println("Invalid position specified. Valid positions are between 1 and " + size+1);
+			alert = true;
+		}
+		if(!alert) {
+			if(position == 1) {
+				//return deleteFirstNodeInSLL(headNode);
+				ListNode currentNode = headNode.getNext();
+				headNode = null; //not required here, let gc take care
+				headNode = currentNode; //ideally, simply do return headNode.getNext();
+			}else {
+				ListNode currentNode = headNode.getNext();
+				for(int i=1;i<position-1;i++) { //book uses while(count < position)
+					currentNode = currentNode.getNext();
+				}
+				//changed the names and method to do the same thing as in book and make it easier to understand.
+				ListNode nodeToDelete = currentNode.getNext();
+				currentNode.setNext(nodeToDelete.getNext());
+				nodeToDelete = null; //mark for gc
+			}
+		}
+		return headNode;
+	}
 
 }
