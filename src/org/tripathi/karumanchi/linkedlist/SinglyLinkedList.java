@@ -7,8 +7,6 @@ package org.tripathi.karumanchi.linkedlist;
  */
 public class SinglyLinkedList {
 	
-	ListNode sll;
-	
 	//Traversing the Linked List
 	int ListLength(ListNode headNode) {
 		//we start by traversing from the first node
