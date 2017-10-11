@@ -1,5 +1,9 @@
 package org.tripathi.karumanchi.linkedlist;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 /*
  * Here, we go through various operations of SinglyLinkedList
  * The list contains of nodes which will have a next pointer/reference
@@ -25,15 +29,13 @@ public class SinglyLinkedList {
 	
 	
 	//Inserting a node at the beginning of the linked list
-	ListNode InsertNodeAtBeginning(ListNode headNode, int data) {
-		ListNode newHeadNode = new ListNode(data);
-		newHeadNode.setNext(headNode);
-		return newHeadNode;
+	ListNode InsertNodeAtBeginning(ListNode headNode, ListNode nodeToInsert) {
+		nodeToInsert.setNext(headNode);
+		return nodeToInsert;
 	}
 	
-	ListNode InsertNodeAtEndOfLinkedList(ListNode headNode, int data) {
-		ListNode newNode = new ListNode(data);
-		newNode.setNext(null);
+	ListNode InsertNodeAtEndOfLinkedList(ListNode headNode, ListNode nodeToInsert) {
+		nodeToInsert.setNext(null);
 		ListNode currentNode = headNode;
 		/*traverse the list till you reach the last element
 		 * the first implementation that i came up with. 
@@ -50,7 +52,7 @@ public class SinglyLinkedList {
 			currentNode = currentNode.getNext();
 		}
 		//now that currentNode is the last node, set its next pointer to the new node
-		currentNode.setNext(newNode);
+		currentNode.setNext(nodeToInsert);
 		return headNode;
 		//Time Complexity: O(n)
 		
@@ -65,8 +67,8 @@ public class SinglyLinkedList {
 			return nodeToInsert;
 		}
 		Integer size = ListLength(headNode);
-		if( position > size+1 || position < 1 ) {
-			System.out.println("Invalid position specified. Valid positions are between 1 and " + size+1);
+		if( position > size || position < 1 ) {
+			System.out.println("Invalid position specified. Valid positions are between 1 and " + (size));
 			return headNode;
 		}
 		// if position is 1, that means insertion is happening before the headnode
@@ -84,7 +86,7 @@ public class SinglyLinkedList {
 			// if we go up to position, then we can't do anything with that node as that node should actually 
 			//						...be the next node after the nodeToInsert
 			for(int i=1;i<position-1;i++) {
-				previousNode = headNode.getNext(); 
+				previousNode = previousNode.getNext(); 
 			}
 			ListNode nextNode = previousNode.getNext(); 
 			previousNode.setNext(nodeToInsert);
@@ -131,8 +133,8 @@ public class SinglyLinkedList {
 	ListNode DeleteFromLinkedList(ListNode headNode, Integer position) {
 		//multiple returns in this method. don't think multiple returns are good for implementation/maintainability
 		int size = ListLength(headNode);
-		if(position > size + 1 || position < 1) {
-			System.out.println("Invalid position specified. Valid positions are between 1 and " + size+1);
+		if(position > size || position < 1) {
+			System.out.println("Invalid position specified. Valid positions are between 1 and " + (size));
 			return headNode;
 		}
 		
@@ -142,7 +144,7 @@ public class SinglyLinkedList {
 			headNode = null; //not required here, let gc take care
 			return currentNode; //ideally, simply do return headNode.getNext();
 		}else {
-			ListNode currentNode = headNode.getNext();
+			ListNode currentNode = headNode;
 			for(int i=1;i<position-1;i++) { //book uses while(count < position)
 				currentNode = currentNode.getNext();
 			}
@@ -155,11 +157,11 @@ public class SinglyLinkedList {
 		return headNode;
 	}
 	ListNode DeleteFromLinkedListSingleReturn(ListNode headNode, Integer position) {
-		//multiple returns in this method. don't think multiple returns are good for implementation/maintainability
+		//made the previous method to have a single return.
 		int size = ListLength(headNode);
 		Boolean alert = false;
-		if(position > size + 1 || position < 1) {
-			System.out.println("Invalid position specified. Valid positions are between 1 and " + size+1);
+		if(position > size || position < 1) {
+			System.out.println("Invalid position specified. Valid positions are between 1 and " + (size));
 			alert = true;
 		}
 		if(!alert) {
@@ -167,7 +169,7 @@ public class SinglyLinkedList {
 				//return deleteFirstNodeInSLL(headNode);
 				ListNode currentNode = headNode.getNext();
 				headNode = null; //not required here, let gc take care
-				headNode = currentNode; //ideally, simply do return headNode.getNext();
+				headNode = currentNode; //ideally, simply do headNode.getNext();
 			}else {
 				ListNode currentNode = headNode.getNext();
 				for(int i=1;i<position-1;i++) { //book uses while(count < position)
@@ -180,6 +182,94 @@ public class SinglyLinkedList {
 			}
 		}
 		return headNode;
+	}
+	
+	void PrintList(ListNode headNode) {
+		ListNode currentNode = headNode;
+		while(currentNode != null) {
+			System.out.print(currentNode.getData() + " -> ");
+			currentNode = currentNode.getNext();
+		}System.out.println(" X");
+	}
+	
+	void doOperationsOnSLL() throws IOException{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		Character choice = 'y';
+		Integer option, data, position;
+		ListNode headNode = null;
+		
+		while(choice == 'y' || choice == 'Y') { 
+			System.out.println("=====Options====");
+			System.out.println("1. Add to start of S Linked List");
+			System.out.println("2. Add at end of S Linked List");
+			System.out.println("3. Add at a position in S Linked List");
+			System.out.println("4. Delete first node of a S Linked List");
+			System.out.println("5. Delete last node of a S Linked List");
+			System.out.println("6. Delete node at a position");
+			System.out.println("7. Print List");
+			option = Integer.parseInt(br.readLine());
+			ListNode nodeToInsert;
+			
+			switch (option) {
+			
+			case 1:
+				System.out.println("Enter data: ");
+				data = Integer.parseInt(br.readLine().trim());
+				nodeToInsert = new ListNode(data);
+				headNode = InsertNodeAtBeginning(headNode, nodeToInsert);
+				PrintList(headNode);
+				break;
+			
+			case 2:
+				System.out.println("Enter data: ");
+				data = Integer.parseInt(br.readLine().trim());
+				nodeToInsert = new ListNode(data);
+				headNode = InsertNodeAtEndOfLinkedList(headNode, nodeToInsert);
+				PrintList(headNode);
+				break;
+			
+			case 3:
+				System.out.println("Enter data: ");
+				data = Integer.parseInt(br.readLine().trim());
+				nodeToInsert = new ListNode(data);
+				System.out.println("Enter position to add: ");
+				position = Integer.parseInt(br.readLine().trim());
+				headNode = InsertInLinkedList(headNode, nodeToInsert, position);
+				PrintList(headNode);
+				break;
+				
+			case 4:
+				System.out.println("Deleting");
+				headNode = deleteFirstNodeInSLL(headNode);
+				PrintList(headNode);
+				break;
+			
+			case 5:
+				System.out.println("Deleting last node...");
+				headNode = deleteLastNodeInSLL(headNode);
+				PrintList(headNode);
+				break;
+			
+			case 6:
+				System.out.println("Enter position to delete: ");
+				position = Integer.parseInt(br.readLine().trim());
+				headNode = DeleteFromLinkedList(headNode, position);
+				PrintList(headNode);
+				break;
+				
+			case 7:
+				System.out.println("Printling list contents");
+				PrintList(headNode);
+				break;
+			
+			default:
+				System.out.println("Invalid options provided");
+			}
+			
+			
+			System.out.println("Do you want to continue adding more options?(y/n)");
+			choice = br.readLine().charAt(0);
+		}
 	}
 
 }
