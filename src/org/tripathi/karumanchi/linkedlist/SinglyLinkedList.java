@@ -67,7 +67,7 @@ public class SinglyLinkedList {
 			return nodeToInsert;
 		}
 		Integer size = ListLength(headNode);
-		if( position > size || position < 1 ) {
+		if( position > size+1 || position < 1 ) {
 			System.out.println("Invalid position specified. Valid positions are between 1 and " + (size));
 			return headNode;
 		}
@@ -133,7 +133,7 @@ public class SinglyLinkedList {
 	ListNode DeleteFromLinkedList(ListNode headNode, Integer position) {
 		//multiple returns in this method. don't think multiple returns are good for implementation/maintainability
 		int size = ListLength(headNode);
-		if(position > size || position < 1) {
+		if(position > size+1 || position < 1) {
 			System.out.println("Invalid position specified. Valid positions are between 1 and " + (size));
 			return headNode;
 		}
@@ -160,7 +160,7 @@ public class SinglyLinkedList {
 		//made the previous method to have a single return.
 		int size = ListLength(headNode);
 		Boolean alert = false;
-		if(position > size || position < 1) {
+		if(position > size+1 || position < 1) {
 			System.out.println("Invalid position specified. Valid positions are between 1 and " + (size));
 			alert = true;
 		}
@@ -190,6 +190,20 @@ public class SinglyLinkedList {
 			System.out.print(currentNode.getData() + " -> ");
 			currentNode = currentNode.getNext();
 		}System.out.println(" X");
+	}
+	
+	public static void main(String[] args) {
+		SinglyLinkedList sll = new SinglyLinkedList();
+		ListNode headNode = null;
+		for(int i =1;i<5;i++) {
+			if(i==1) {
+				headNode = new ListNode(1);
+			}else {
+				ListNode nodeToInsert = new ListNode(i);
+				sll.InsertInLinkedList(headNode, nodeToInsert, i);
+			}
+			sll.PrintList(headNode);
+		}
 	}
 	
 	void doOperationsOnSLL() throws IOException{
