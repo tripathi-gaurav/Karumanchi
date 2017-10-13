@@ -4,6 +4,8 @@ package org.tripathi.karumanchi.linkedlist;
 //find if there is cycle(loop) in the linked list
 //if there is a cycle, find the length of the cycle
 
+//Time Complexity: O(N)
+//Space Complexity: O(1)
 public class Problem14 {
 	public static void main(String[] args) {
 		SinglyLinkedList sll = new SinglyLinkedList();
