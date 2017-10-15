@@ -29,9 +29,19 @@ public class Problem3 {
 	static ListNode PopulateList(SinglyLinkedList sll) {
 		ListNode headNode = new ListNode(1); 
 		ListNode nodeToInsert = null;
-		for(int i=1; i<=10;i++) {
+		for(int i=1; i<=9;i++) {
 			nodeToInsert = new ListNode(i);
 			sll.InsertInLinkedList(headNode, nodeToInsert, i);
+		}
+		return headNode;
+	}
+	
+	static ListNode PopulateList2(SinglyLinkedList sll) {
+		ListNode headNode = new ListNode(11);
+		ListNode nodeToInsert = null;
+		for(int i=11;i<=20;i++) {
+			nodeToInsert = new ListNode(i);
+			sll.InsertInLinkedList(headNode, nodeToInsert, i-10);
 		}
 		return headNode;
 	}
