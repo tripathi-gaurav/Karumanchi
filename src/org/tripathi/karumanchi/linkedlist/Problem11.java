@@ -4,6 +4,8 @@ package org.tripathi.karumanchi.linkedlist;
 //we use the same fastPtr and slowPtr logic as in Problem9
 //once loop is found then we re-initialize the slowPtr to head
 //and from there on, increment both fastPtr and slowPtr by one till they are equal
+
+//https://leetcode.com/problems/linked-list-cycle-ii/description/
 public class Problem11 {
 
 	public static void main(String[] args) {

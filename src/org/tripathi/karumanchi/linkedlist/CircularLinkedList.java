@@ -147,5 +147,13 @@ public class CircularLinkedList {
 		}
 	}
 	
+	public CLLNode getCircularLinkedList() {
+		CLLNode headNode = new CLLNode(1);
+		for(int i = 2; i<10; i++) {
+			InsertAtEndInCLL(headNode, new CLLNode(i));
+		}
+		return headNode;
+		
+	}
 	
 }
