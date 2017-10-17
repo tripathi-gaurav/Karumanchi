@@ -17,7 +17,7 @@ public class QueueUsingTwoStacks {
 	public boolean isEmpty() {
 		if(stack2.isEmpty()) {
 			while(!stack1.isEmpty()) {
-				stack2.push(stack1.pop());
+				stack2.push((Integer) stack1.pop());
 			}
 		}
 		return stack2.isEmpty();
@@ -27,12 +27,12 @@ public class QueueUsingTwoStacks {
 		stack1.push(data);
 	}
 	
-	public Integer deQueue() {
+	public Object deQueue() {
 		if(!stack2.isEmpty()) {
 			return stack2.pop();
 		}else {
 			while(!stack1.isEmpty()) {
-				stack1.push(stack2.pop());
+				stack1.push( (Integer) stack2.pop());
 			}
 			return stack2.pop();
 		}

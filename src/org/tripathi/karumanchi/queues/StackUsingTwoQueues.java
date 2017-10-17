@@ -31,7 +31,7 @@ public class StackUsingTwoQueues {
 		while(!queue1.isEmpty()) {
 			queue2.enQueue(queue1.deQueue());
 			if(queue1.getQueueSize(queue1) == 1) {
-				data = queue1.deQueue();
+				data = (Integer) queue1.deQueue();
 				break;
 			}
 		}
@@ -39,7 +39,7 @@ public class StackUsingTwoQueues {
 		while(!queue2.isEmpty()) {
 			queue1.enQueue(queue2.deQueue());
 			if(queue2.getQueueSize(queue2) == 1) {
-				data = queue2.deQueue();
+				data = (Integer) queue2.deQueue();
 				break;
 			}
 		}
