@@ -24,7 +24,7 @@ public class LLStack {
 		}
 	}
 	
-	public Integer top() {
+	public Object top() {
 		if(this.headNode == null) {
 			return null;
 		}else {
@@ -32,8 +32,8 @@ public class LLStack {
 		}
 	}
 	
-	public Integer pop() {
-		Integer data = null;
+	public Object pop() {
+		Object data = null;
 		if(this.headNode == null) {
 			throw new EmptyStackException();
 		}else {

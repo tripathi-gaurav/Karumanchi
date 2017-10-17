@@ -20,7 +20,7 @@ public class ReverseAQueue {
 		Stack<Integer> stack = new Stack<>();
 		
 		while(!queue.isEmpty()) {
-			stack.push(queue.deQueue());
+			stack.push( (Integer) queue.deQueue());
 		}
 		
 		while(!stack.isEmpty()) {

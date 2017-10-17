@@ -15,7 +15,7 @@ public class LLQueue {
 		return (frontNode == null);
 	}
 	
-	public void enQueue(Integer data) {
+	public void enQueue(Object data) {
 		ListNode newNode = new ListNode(data);
 		if(rearNode != null) {
 			rearNode.setNext(newNode);
@@ -26,8 +26,8 @@ public class LLQueue {
 		}
 	}
 	
-	public Integer deQueue() {
-		Integer data;
+	public Object deQueue() {
+		Object data;
 		if(isEmpty()) {
 			System.out.println("Queue is empty");
 			return null;

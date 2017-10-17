@@ -5,16 +5,16 @@ package org.tripathi.karumanchi.linkedlist;
  * 
  */
 public class ListNode {
-	private int data;
+	private Object data;
 	private ListNode next;
 	
 	public ListNode() {}
 	
-	public ListNode(int data) {
+	public ListNode(Object data) {
 		this.data = data;
 	}
 
-	public int getData() {
+	public Object getData() {
 		return data;
 	}
 

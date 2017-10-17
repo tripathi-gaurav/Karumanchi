@@ -27,10 +27,10 @@ public class Problem31 {
 			return head1;
 		}
 		
-		if(head1.getData() < head2.getData()) {
+		if( (Integer) head1.getData() < (Integer) head2.getData()) {
 			head = head1;
 			head.setNext(MergeSortedList(head1.getNext(), head2));
-		}else if(head2.getData() < head1.getData()) {
+		}else if( (Integer) head2.getData() < (Integer) head1.getData()) {
 			head = head2;
 			head.setNext(MergeSortedList(head1, head2.getNext()));		}
 		

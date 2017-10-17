@@ -29,7 +29,7 @@ public class Problem15 {
 		ListNode currentNode = head;
 		ListNode previousNode = head;
 		//book's cleaner version
-		while(currentNode != null && nodeToInsert.getData() > currentNode.getData()) {
+		while(currentNode != null && (Integer) nodeToInsert.getData() > (Integer) currentNode.getData()) {
 			previousNode = currentNode;
 			currentNode = currentNode.getNext();
 		}
