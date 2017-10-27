@@ -18,7 +18,7 @@ public class ListNode {
 		return data;
 	}
 
-	public void setData(int data) {
+	public void setData(Object data) {
 		this.data = data;
 	}
 
