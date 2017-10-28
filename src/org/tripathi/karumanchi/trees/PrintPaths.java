@@ -3,13 +3,13 @@ package org.tripathi.karumanchi.trees;
 import org.tripathi.karumanchi.stacks.LLStack;
 //problem-20 in book
 //http://practice.geeksforgeeks.org/problems/root-to-leaf-paths/
+//https://leetcode.com/problems/binary-tree-paths/description/
 
 public class PrintPaths {
 
 	public void printPathsIterative(BinaryTreeNode root) {
 		//Time complexity : O(n)
 		//Space complexity : O(n) for the stack
-		
 		if(root == null) {
 			return ;
 		}
