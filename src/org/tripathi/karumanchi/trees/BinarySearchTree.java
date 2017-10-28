@@ -145,4 +145,70 @@ public class BinarySearchTree {
 			
 		}
 	}
+	
+	BinaryTreeNode findInBST(BinaryTreeNode root, Integer target) {
+		
+		if(root == null) {
+			return root;
+		}
+		
+		while(root != null) {
+			if(root.getData() == target) {
+				break;
+			}
+			
+			if(target < root.getData()) {
+				root = root.getLeft();
+			}
+			if(target > root.getData()) {
+				root = root.getRight();
+			}
+		}
+		
+		return root;
+	}
+	
+	BinaryTreeNode findMinInBST(BinaryTreeNode root) {
+		if(root == null) {
+			return root;
+		}
+		while(root.getLeft() != null) {
+			root = root.getLeft();
+		}
+		return root;
+	}
+	
+	BinaryTreeNode findMinInBSTRecursive(BinaryTreeNode root) {
+		if(root == null) {
+			return root;
+		}
+		if(root.getLeft() == null) {
+			return root;
+		}
+		return findMinInBSTRecursive(root.getLeft());
+	}
+	
+	BinaryTreeNode findMaxInBST(BinaryTreeNode root) {
+		if(root == null) {
+			return root;
+		}
+		while(root.getRight() != null) {
+			root = root.getRight();
+		}
+		return root;
+	}
+	
+	BinaryTreeNode insertInBST(BinaryTreeNode root, int data) {
+		if(root == null) {
+			root = new BinaryTreeNode();
+			root.setData(data);
+		}else {
+			if(data < root.getData()) {
+				root = insertInBST(root.getLeft(), data);
+			}else if(data > root.getData()) {
+				root = insertInBST(root.getRight(), data);
+			}
+		}
+		return root;
+	}
 }
