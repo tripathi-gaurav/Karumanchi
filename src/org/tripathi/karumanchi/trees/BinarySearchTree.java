@@ -199,6 +199,9 @@ public class BinarySearchTree {
 	}
 	
 	BinaryTreeNode insertInBST(BinaryTreeNode root, int data) {
+		//http://www.geeksforgeeks.org/binary-search-tree-set-1-search-and-insertion/
+		//https://www.hackerrank.com/challenges/binary-search-tree-insertion/problem
+		
 		if(root == null) {
 			root = new BinaryTreeNode();
 			root.setData(data);
@@ -211,4 +214,37 @@ public class BinarySearchTree {
 		}
 		return root;
 	}
+	
+	BinaryTreeNode deleteNode(BinaryTreeNode root, int data) {
+		//https://leetcode.com/problems/delete-node-in-a-bst/description/
+		//http://practice.geeksforgeeks.org/problems/delete-a-node-from-bst/
+		if(root == null) {
+			return root;
+		}
+		
+		if(root.getData() > data) {
+			root.setRight(deleteNode(root.getRight(), data));
+		}else if(root.getData() < data) {
+			root.setLeft(deleteNode(root.getLeft(), data));
+		}else {
+			//we have found the element
+			if(root.getRight() != null && root.getLeft() != null) {
+				BinaryTreeNode maxInLeftSubTree = findMaxInBST(root.getLeft());
+				root = maxInLeftSubTree;
+				root.setLeft(deleteNode(root.getLeft(), maxInLeftSubTree.getData()));
+			}else if(root.getRight() != null || root.getLeft() != null) {
+				//has only one child
+				BinaryTreeNode temp = ( root.getLeft() == null ? root.getRight() : root.getLeft() );
+				root = temp;
+				temp = null;
+			}else {
+				//leaf node...no child
+				root = null;
+			}
+		}
+		
+		return root;
+	}
+	
+	
 }
