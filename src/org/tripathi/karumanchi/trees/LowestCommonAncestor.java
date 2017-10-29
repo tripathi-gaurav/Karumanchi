@@ -6,6 +6,7 @@ package org.tripathi.karumanchi.trees;
 public class LowestCommonAncestor {
 
 	public BinaryTreeNode lca(BinaryTreeNode root, BinaryTreeNode p, BinaryTreeNode q) {
+		 
 		if(root == null) {
 			return root;
 		}
@@ -16,6 +17,16 @@ public class LowestCommonAncestor {
 			return root;
 		}
 		
+		BinaryTreeNode leftTemp = lca(root.getLeft(), p, q);
+		BinaryTreeNode rightTemp = lca(root.getRight(), p, q);
+		
+		if(leftTemp == null) {
+			return leftTemp;
+		}
+		
+		if(rightTemp == null) {
+			return rightTemp;
+		}
 		
 		return null;
 	}
