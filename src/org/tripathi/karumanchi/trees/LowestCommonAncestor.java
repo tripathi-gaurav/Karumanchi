@@ -20,6 +20,10 @@ public class LowestCommonAncestor {
 		BinaryTreeNode leftTemp = lca(root.getLeft(), p, q);
 		BinaryTreeNode rightTemp = lca(root.getRight(), p, q);
 		
+		if(leftTemp != null && rightTemp != null){
+            return root;
+        }
+		
 		if(leftTemp == null) {
 			return leftTemp;
 		}
