@@ -30,4 +30,15 @@ public class HeightOfBinaryTree {
 		}
 		return count;
 	}
+	
+	public int heightOfBinaryTreeRecursive(BinaryTreeNode root) {
+		if( root == null ) {
+			return 0;
+		}
+		
+		return 1 + (Math.max( 
+				heightOfBinaryTreeRecursive( root.getLeft() ) ,  
+				heightOfBinaryTreeRecursive( root.getRight() ) 
+				) );
+	}
 }
