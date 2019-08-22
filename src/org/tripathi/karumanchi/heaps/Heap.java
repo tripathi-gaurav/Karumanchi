@@ -78,6 +78,7 @@ public class Heap {
 		}
 		int result = this.array[0];
 		this.array[0] = this.array[count-1];
+		this.count--;
 		PercolateDown(0);
 		return result;
 	}
