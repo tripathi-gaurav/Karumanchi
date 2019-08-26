@@ -12,7 +12,7 @@ public class SSSPDijkstra {
     //Map<String, Map<String, Double>> graph = new HashMap<>();
 	//If you want a graph with Integer IDs
 	//Map( src (u ), map<dst (v), WEIGHT> )
-    Map<Integer, Map<Integer, Integer>> graph = new HashMap<>();
+	Map<Integer, Map<Integer, Integer>> graph = new HashMap<>();
 
     public int networkDelayTime(int[][] times, int N, int K) {
     
@@ -37,6 +37,8 @@ public class SSSPDijkstra {
         		continue;
         	}
         	distance.put( u , wt );
+        	if( graph.containsKey( u ) ){
+                
         	Map<Integer, Integer> adjList = graph.get( u );
         	for( Map.Entry<Integer, Integer> neighbors : adjList.entrySet() ) {
         		int v = neighbors.getKey();
@@ -45,19 +47,19 @@ public class SSSPDijkstra {
         			pq.add(new int[] {wt+wt2, v} );
         		}
         	}
-        	
+            }
         }
         
-        
-        
-        Map<Integer, Integer> adjacentToU = graph.get( K ); //src
-        for( Map.Entry<Integer, Integer> neighbors : adjacentToU.entrySet() ){
-            int v = neighbors.getKey();
-            int wt = neighbors.getValue();
-            
-            
+        if( distance.size() != N ) {
+        	return -1;
         }
-        return -1;
+        
+        int max = Integer.MIN_VALUE;
+        for( int dist : distance.values() ) {
+        	max = dist > max ? dist : max;
+        }
+        
+        return max;
     }
     
     
@@ -68,7 +70,7 @@ public class SSSPDijkstra {
             int wt = edges[2];
             
             graph.putIfAbsent( u, new HashMap<>() );
-            graph.putIfAbsent( v, new HashMap<>() );
+            //graph.putIfAbsent( v, new HashMap<>() );
             Map<Integer, Integer> adj = graph.get( u );
             adj.put( v, wt );
             
