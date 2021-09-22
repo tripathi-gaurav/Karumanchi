@@ -55,5 +55,28 @@ public class Graph {
 		return false;
 	}
 	
+	public boolean hasPathBFS(Node source, Node dest) {
+		LinkedList<Node> nextToVisit = new LinkedList<>();
+		HashSet<Integer> visited = new HashSet<>();
+		nextToVisit.add(source);
+		
+		while(!nextToVisit.isEmpty()) {
+			Node currentNode = nextToVisit.removeFirst();
+			if( currentNode == dest ) {
+				return true;
+			}
+			
+			if(visited.contains(currentNode.id)) {
+				continue;
+			}
+			
+			for( Node child : currentNode.adjacent ) {
+				nextToVisit.add(child);
+			}
+		}
+		
+		return false;
+	}
+	
 
 }
