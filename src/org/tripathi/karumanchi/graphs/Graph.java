@@ -42,6 +42,11 @@ public class Graph {
 		if(visited.contains(source.id)) {
 			return false;
 		}
+		visited.add(source.id);
+		if(source == dest) {
+			return true;
+		}
+		
 		for(Node child : source.adjacent) {
 			if(hasPathDFS(child, dest, visited)) {
 				return true;
